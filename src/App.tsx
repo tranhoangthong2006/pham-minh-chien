@@ -515,7 +515,7 @@ export default function PortfolioPhamMinhChien() {
 
                   <div>
                     <h3 className="text-2xl sm:text-3xl font-extrabold text-stone-900 tracking-tight font-heading mb-2 leading-snug">
-                      Video Project — Giới Thiệu Bản Thân <br />
+                      Project — Giới Thiệu Bản Thân <br />
                       & Năng Lực PR
                     </h3>
                     <p className="text-stone-600 text-sm sm:text-base font-light leading-relaxed">

@@ -292,7 +292,7 @@ export function PRVideoShowcase({
             className="absolute bottom-2.5 inset-x-3 z-20 space-y-1.5 pointer-events-auto"
           >
             <div className="text-left">
-              <h4 className="text-xs font-bold text-white truncate">Video Project — Phạm Minh Chiến</h4>
+              <h4 className="text-xs font-bold text-white truncate">Project — Phạm Minh Chiến</h4>
               <span className="text-[10px] font-mono text-amber-300 font-medium block">Quan Hệ Công Chúng • ĐH Gia Định</span>
             </div>
 
