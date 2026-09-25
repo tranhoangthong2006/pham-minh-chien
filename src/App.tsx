@@ -44,7 +44,7 @@ const CANDIDATE_DATA = {
   phone: "0566045020",
   cvDriveUrl: "/CV PHẠM MINH CHIẾN (6) (1).pdf",
   cvFileUrl: "/CV PHẠM MINH CHIẾN (6) (1).pdf",
-  folderUrl: "https://drive.google.com/drive/folders/1d_kaWQ84p3cwkOYmTfkgLSKcLm93mzJm",
+  folderUrl: "https://drive.google.com/drive/folders/14ppSNrF8my818RuUUeWbNeF5OS19b4F9",
   tiktokUrl: "https://www.tiktok.com/@trendytee62/video/7560685079442377998?_r=1&_t=ZS-99zbpOvv3Wq",
   bio: "Tốt nghiệp chuyên ngành Quan hệ công chúng tại Trường Đại học Gia Định. Chủ động học hỏi, tư duy nhạy bén với xu hướng truyền thông mạng xã hội, làm chủ kỹ năng quay dựng video ngắn giữ chân người xem và luôn kiên trì theo đuổi chỉ số KPI thực tế.",
   objectives: {
