@@ -268,17 +268,17 @@ export default function PortfolioPhamMinhChien() {
 
           {/* 3D Tactile CTA Button */}
           <div className="flex items-center gap-3">
-            <a 
-              href={encodeURI(CANDIDATE_DATA.cvFileUrl)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="relative group overflow-hidden flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-2xl sm:rounded-full text-xs sm:text-sm font-semibold text-white bg-gradient-to-b from-rose-500 to-rose-600 hover:from-rose-400 hover:to-rose-500 shadow-[0_4px_14px_rgba(225,29,72,0.35),0_2px_0_#9f1239,inset_0_1.5px_1px_rgba(255,255,255,0.4)] hover:-translate-y-0.5 hover:shadow-[0_6px_18px_rgba(225,29,72,0.42),0_2px_0_#9f1239,inset_0_1.5px_1px_rgba(255,255,255,0.5)] active:translate-y-0.5 active:shadow-[0_2px_4px_rgba(225,29,72,0.25),0_0px_0_#9f1239] transition-all duration-150 min-h-[40px]"
+            <button 
+              type="button"
+              onClick={() => setIsResumeOpen(true)}
+              className="relative group overflow-hidden flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-2xl sm:rounded-full text-xs sm:text-sm font-semibold text-white bg-gradient-to-b from-rose-500 to-rose-600 hover:from-rose-400 hover:to-rose-500 shadow-[0_4px_14px_rgba(225,29,72,0.35),0_2px_0_#9f1239,inset_0_1.5px_1px_rgba(255,255,255,0.4)] hover:-translate-y-0.5 hover:shadow-[0_6px_18px_rgba(225,29,72,0.42),0_2px_0_#9f1239,inset_0_1.5px_1px_rgba(255,255,255,0.5)] active:translate-y-0.5 active:shadow-[0_2px_4px_rgba(225,29,72,0.25),0_0px_0_#9f1239] transition-all duration-150 min-h-[40px] cursor-pointer"
+              aria-label="Xem nhanh CV hồ sơ năng lực"
             >
               <FileText className="w-4 h-4 text-white/90 group-hover:rotate-6 transition-transform" />
               <span className="tracking-tight">Xem Nhanh CV</span>
               {/* Shimmer light sweep */}
               <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
-            </a>
+            </button>
           </div>
         </div>
       </header>
@@ -769,7 +769,12 @@ export default function PortfolioPhamMinhChien() {
 
       {/* 5. CONTACT & CLOSING SECTION (VIP PRESS INVITATION & SIGN-OFF) */}
       <EditorialPressContact 
-        cvUrl={CANDIDATE_DATA.cvDriveUrl} 
+        cvUrl={CANDIDATE_DATA.cvDriveUrl}
+        email={CANDIDATE_DATA.email}
+        phone={CANDIDATE_DATA.phone}
+        location={CANDIDATE_DATA.location}
+        name={CANDIDATE_DATA.name}
+        degree={CANDIDATE_DATA.degree}
         onScrollToTop={() => scrollTo('hero')} 
       />
 

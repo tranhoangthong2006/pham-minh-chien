@@ -11,13 +11,25 @@ import { ContactForm } from './ContactForm';
 
 interface ContactProps {
   cvUrl?: string;
+  email?: string;
+  phone?: string;
+  location?: string;
+  name?: string;
+  degree?: string;
   onScrollToTop?: () => void;
 }
 
 export function EditorialPressContact({
   cvUrl = "/CV PHẠM MINH CHIẾN (6) (1).pdf",
+  email = "Phamminhchien2017@gmail.com",
+  phone = "0566045020",
+  location = "113/19/1 Trần Văn Đang, Phường 11, Quận 3, TP. Hồ Chí Minh",
+  name = "Phạm Minh Chiến",
+  degree = "Cử nhân Chuyên ngành Quan hệ công chúng (PR)",
   onScrollToTop
 }: ContactProps) {
+  const cleanPhone = phone.replace(/[^0-9+]/g, '');
+  const formattedPhone = phone.length === 10 ? `${phone.slice(0, 4)} ${phone.slice(4, 7)} ${phone.slice(7)}` : phone;
   
   const scrollToTop = () => {
     if (onScrollToTop) {
@@ -95,14 +107,14 @@ export function EditorialPressContact({
                   Thư điện tử trao đổi công việc
                 </span>
                 <a 
-                  href="mailto:Phamminhchien2017@gmail.com"
+                  href={`mailto:${email}`}
                   className="group inline-flex items-center gap-2.5 text-base sm:text-lg font-bold text-stone-900 hover:text-rose-600 transition-colors"
-                  aria-label="Gửi thư điện tử tới Phạm Minh Chiến"
+                  aria-label={`Gửi thư điện tử tới ${name}`}
                 >
                   <div className="w-9 h-9 rounded-xl bg-rose-50 border border-rose-200 flex items-center justify-center text-rose-600 group-hover:scale-105 transition-all shadow-xs shrink-0">
                     <Mail className="w-4 h-4" aria-hidden="true" />
                   </div>
-                  <span className="truncate group-hover:underline underline-offset-4 decoration-rose-400">Phamminhchien2017@gmail.com</span>
+                  <span className="truncate group-hover:underline underline-offset-4 decoration-rose-400">{email}</span>
                   <ArrowUpRight className="w-4 h-4 text-stone-400 group-hover:text-rose-600 shrink-0 transition-all" aria-hidden="true" />
                 </a>
               </div>
@@ -113,14 +125,14 @@ export function EditorialPressContact({
                   Đường dây liên hệ trực tiếp
                 </span>
                 <a 
-                  href="tel:0566045020"
+                  href={`tel:${cleanPhone}`}
                   className="group inline-flex items-center gap-2.5 text-base sm:text-lg font-extrabold text-stone-900 font-mono hover:text-rose-600 transition-colors"
-                  aria-label="Gọi điện thoại trực tiếp tới Phạm Minh Chiến"
+                  aria-label={`Gọi điện thoại trực tiếp tới ${name}`}
                 >
                   <div className="w-9 h-9 rounded-xl bg-amber-50 border border-amber-200 flex items-center justify-center text-amber-600 group-hover:scale-105 transition-all shadow-xs shrink-0">
                     <Phone className="w-4 h-4" aria-hidden="true" />
                   </div>
-                  <span className="group-hover:underline underline-offset-4 decoration-amber-400">0566 045 020</span>
+                  <span className="group-hover:underline underline-offset-4 decoration-amber-400">{formattedPhone}</span>
                   <ArrowUpRight className="w-4 h-4 text-stone-400 group-hover:text-rose-600 shrink-0 transition-all" aria-hidden="true" />
                 </a>
               </div>
@@ -131,7 +143,7 @@ export function EditorialPressContact({
             <div className="pt-4 border-t border-stone-200/60 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div className="flex items-start gap-2.5 text-xs sm:text-sm text-stone-600">
                 <MapPin className="w-4 h-4 text-rose-500 shrink-0 mt-0.5" aria-hidden="true" />
-                <span>113/19/1 Trần Văn Đang, Phường 11, Quận 3, TP. Hồ Chí Minh</span>
+                <span>{location}</span>
               </div>
 
               <div className="text-left sm:text-right space-y-0.5 shrink-0">
@@ -140,10 +152,10 @@ export function EditorialPressContact({
                   <span>ĐẠI HỌC GIA ĐỊNH</span>
                 </div>
                 <div className="text-base font-extrabold text-stone-900 tracking-tight font-heading">
-                  Phạm Minh Chiến
+                  {name}
                 </div>
                 <div className="text-xs text-stone-500 font-medium">
-                  Cử nhân Chuyên ngành Quan hệ công chúng (PR)
+                  {degree}
                 </div>
               </div>
             </div>

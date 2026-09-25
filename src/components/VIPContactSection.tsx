@@ -13,19 +13,21 @@ import {
 
 interface ContactSectionProps {
   cvUrl?: string;
+  email?: string;
+  phone?: string;
+  address?: string;
   onScrollToTop?: () => void;
 }
 
 export function VIPContactSection({
   cvUrl = "https://drive.google.com/file/d/1uoveqVh_QBdRe41lvxGuBpLjhW4zd_vF/view?usp=drive_link",
+  email = "Phamminhchien2017@gmail.com",
+  phone = "0566045020",
+  address = "113/19/1 Trần Văn Đang, Phường 11, Quận 3, TP. Hồ Chí Minh",
   onScrollToTop
 }: ContactSectionProps) {
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [copiedPhone, setCopiedPhone] = useState(false);
-
-  const email = "Phamminhchien2017@gmail.com";
-  const phone = "0566045020";
-  const address = "113/19/1 Trần Văn Đang, Phường 11, Quận 3, TP. Hồ Chí Minh";
 
   const handleCopyEmail = (e: React.MouseEvent) => {
     e.preventDefault();
