@@ -107,18 +107,18 @@ export function LuxuryAmbientBackground() {
         y: initialY !== undefined ? initialY : Math.random() * height,
         size,
         speedY: type === 'flower' 
-          ? Math.random() * 0.35 + 0.22  // Đóa hoa rơi rất chậm, lững lờ trôi
+          ? Math.random() * 0.14 + 0.08  // Đóa hoa lơ lửng, rơi cực kỳ chậm rãi
           : type === 'petal'
-          ? Math.random() * 0.48 + 0.28  // Cánh hoa lượn nhẹ nhàng
-          : Math.random() * 0.25 + 0.15, // Phấn hoa trôi êm
-        speedX: (Math.random() - 0.5) * 0.2,
-        swaySpeed: Math.random() * 0.015 + 0.007,
-        swayRange: Math.random() * 35 + 20,
+          ? Math.random() * 0.18 + 0.12  // Cánh hoa rơi chầm chậm, lượn êm
+          : Math.random() * 0.10 + 0.06, // Phấn hoa bay nhẹ
+        speedX: (Math.random() - 0.5) * 0.08,
+        swaySpeed: Math.random() * 0.007 + 0.003, // Đung đưa rất chậm và tự nhiên
+        swayRange: Math.random() * 25 + 15,
         swayAngle: Math.random() * Math.PI * 2,
         rotation: Math.random() * Math.PI * 2,
-        rotSpeed: (Math.random() - 0.5) * 0.01,
+        rotSpeed: (Math.random() - 0.5) * 0.004, // Xoay chậm nhẹ
         flipAngle: Math.random() * Math.PI * 2,
-        flipSpeed: (Math.random() * 0.018 + 0.008) * (Math.random() > 0.5 ? 1 : -1),
+        flipSpeed: (Math.random() * 0.008 + 0.004) * (Math.random() > 0.5 ? 1 : -1), // Lật cánh 3D từ tốn
         alpha: Math.random() * 0.35 + 0.45,
         baseAlpha: Math.random() * 0.35 + 0.45,
         type,
