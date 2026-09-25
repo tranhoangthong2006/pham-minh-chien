@@ -185,9 +185,8 @@ export function ExperienceSection() {
                 <div className="flex flex-wrap items-baseline justify-between gap-2 mb-2">
                   <span className="text-xs font-mono uppercase tracking-widest text-rose-600 font-bold flex items-center gap-1.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse" />
-                    Tháng 06/2025 — Tháng 05/2026 • HAPI ECOMMERCE
+                    Tháng 06/2025 — Tháng 08/2026 • HAPI ECOMMERCE
                   </span>
-                  <span className="text-[11px] font-mono text-stone-500">11 Tháng Thực Chiến</span>
                 </div>
 
                 <h3 className="text-2xl sm:text-3xl font-extrabold text-stone-900 tracking-tight group-hover:text-rose-600 transition-colors font-heading">
@@ -248,7 +247,6 @@ export function ExperienceSection() {
                     <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
                     Tháng 05/2024 — Tháng 04/2025 • KHÁC BIỆT LÀ TẤT CẢ
                   </span>
-                  <span className="text-[11px] font-mono text-stone-500">11 Tháng Thực Chiến</span>
                 </div>
 
                 <h3 className="text-2xl sm:text-3xl font-extrabold text-stone-900 tracking-tight group-hover:text-amber-600 transition-colors font-heading">

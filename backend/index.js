@@ -1,6 +1,10 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import path from 'path';
+import fs from 'fs';
+import { fileURLToPath } from 'url';
+import compression from 'compression';
 import {
   getContacts,
   getContactById,
@@ -16,16 +20,30 @@ import {
 
 dotenv.config();
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const distPath = path.resolve(__dirname, '../dist');
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 const ADMIN_PIN = process.env.ADMIN_PIN || 'ChienPR';
 
-// Middleware
+// 1. Tối ưu nén dữ liệu Gzip / Brotli cho mọi request (giảm 70-80% dung lượng truyền tải)
+app.use(compression({
+  threshold: 1024,
+  level: 6,
+  filter: (req, res) => {
+    if (req.headers['x-no-compression']) return false;
+    return compression.filter(req, res);
+  }
+}));
+
+// 2. CORS & Parser
 app.use(cors());
 app.use(express.json({ limit: '10mb' }));
 
-// Ensure all responses are explicitly UTF-8 encoded
-app.use((req, res, next) => {
+// 3. Header UTF-8 cho API routes
+app.use('/api', (req, res, next) => {
   res.setHeader('Content-Type', 'application/json; charset=utf-8');
   next();
 });
@@ -240,6 +258,33 @@ app.post('/api/contacts/reset-samples', (req, res) => {
     res.status(500).json({ success: false, error: err.message });
   }
 });
+
+// 16. Serve Frontend Static Build (Tự động phục vụ giao diện trên Render khi build)
+if (fs.existsSync(distPath)) {
+  // Caching 1 năm bất biến cho assets có hash trong tên file
+  app.use('/assets', express.static(path.join(distPath, 'assets'), {
+    maxAge: '1y',
+    immutable: true,
+  }));
+
+  // Caching 30 ngày cho các file tĩnh khác, trừ index.html (luôn no-cache để cập nhật tức thì)
+  app.use(express.static(distPath, {
+    maxAge: '30d',
+    setHeaders: (res, filePath) => {
+      if (filePath.endsWith('index.html')) {
+        res.setHeader('Cache-Control', 'no-cache');
+      }
+    }
+  }));
+
+  // SPA fallback cho client-side routing (ví dụ /admin)
+  app.get('*', (req, res) => {
+    if (req.path.startsWith('/api')) {
+      return res.status(404).json({ success: false, message: 'API endpoint không tồn tại' });
+    }
+    res.sendFile(path.join(distPath, 'index.html'));
+  });
+}
 
 // Start Server
 app.listen(PORT, () => {

@@ -80,7 +80,7 @@ const CANDIDATE_DATA = {
     {
       role: "Social Media & Seller",
       company: "Công ty TNHH HAPI ECOMMERCE",
-      period: "01/06/2025 — 07/05/2026",
+      period: "01/06/2025 — 31/08/2026",
       tasks: [
         "Quản lý và phát triển nội dung kênh TikTok, đẩy mạnh lượng tiếp cận tự nhiên.",
         "Lên ý tưởng, trực tiếp quay dựng và hoàn thiện video ngắn bắt xu hướng.",
@@ -462,12 +462,12 @@ export default function PortfolioPhamMinhChien() {
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4"
           >
-            <div>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-stone-900 tracking-tight font-heading">
+            <div className="flex-1 min-w-0">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-stone-900 tracking-tight font-heading sm:whitespace-nowrap">
                 Chứng minh bằng số liệu, khẳng định qua sản phẩm.
               </h2>
             </div>
-            <p className="text-xs font-mono text-stone-500 max-w-xs">
+            <p className="text-xs font-mono text-stone-500 max-w-xs shrink-0 md:text-right">
               Mỗi sản phẩm đều hướng đến sự lan tỏa tự nhiên và chuyển đổi doanh số thực tế.
             </p>
           </motion.div>
@@ -492,7 +492,7 @@ export default function PortfolioPhamMinhChien() {
                   />
                   <span className="text-[11px] font-mono text-stone-500 mt-3.5 flex items-center gap-1.5">
                     <span className="w-2 h-2 rounded-full bg-rose-500 animate-pulse" />
-                    <span>Đoạn Trailer • Bấm Phóng To để xem toàn bộ video trực tiếp</span>
+                    <span>Video Giới Thiệu & Dự Án Truyền Thông</span>
                   </span>
                 </div>
 
@@ -513,8 +513,9 @@ export default function PortfolioPhamMinhChien() {
                   </div>
 
                   <div>
-                    <h3 className="text-2xl sm:text-3xl font-extrabold text-stone-900 tracking-tight font-heading mb-2">
-                      Video Portfolio — Giới Thiệu Bản Thân & Năng Lực PR
+                    <h3 className="text-2xl sm:text-3xl font-extrabold text-stone-900 tracking-tight font-heading mb-2 leading-snug">
+                      Video Project — Giới Thiệu Bản Thân <br />
+                      & Năng Lực PR
                     </h3>
                     <p className="text-stone-600 text-sm sm:text-base font-light leading-relaxed">
                       Video profile tổng hợp năng lực chuyên môn, quá trình đào tạo ngành Quan hệ công chúng (PR) tại Trường Đại học Gia Định cùng kinh nghiệm thực chiến trong vai trò Ban tổ chức & Cộng tác viên dự án. Trực tiếp đảm nhận toàn bộ quy trình: Lên ý tưởng kịch bản, thiết kế hình ảnh và hậu kỳ dựng video ngắn với Visual Hook sáng tạo.

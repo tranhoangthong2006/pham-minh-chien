@@ -30,9 +30,9 @@ export default {
         }
       },
       fontFamily: {
-        sans: ['"Plus Jakarta Sans"', '"Be Vietnam Pro"', 'Inter', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
-        heading: ['"Plus Jakarta Sans"', '"Be Vietnam Pro"', 'Inter', 'sans-serif'],
-        mono: ['"JetBrains Mono"', 'Inter', 'ui-monospace', 'monospace'],
+        sans: ['"Be Vietnam Pro"', 'sans-serif'],
+        heading: ['"Plus Jakarta Sans"', 'sans-serif'],
+        mono: ['"JetBrains Mono"', 'monospace'],
       },
       spacing: {
         '18': '4.5rem',

@@ -111,9 +111,20 @@ export function FallingPetalsBackground() {
       pCtx.restore();
     };
 
+    let isTabVisible = !document.hidden;
+    const handleVisibilityChange = () => {
+      isTabVisible = !document.hidden;
+      if (isTabVisible) {
+        cancelAnimationFrame(animationFrameId);
+        animationFrameId = requestAnimationFrame(render);
+      }
+    };
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
     let time = 0;
 
     const render = () => {
+      if (!isTabVisible) return;
       time += 1;
       ctx.clearRect(0, 0, width, height);
 
@@ -146,6 +157,7 @@ export function FallingPetalsBackground() {
 
     return () => {
       window.removeEventListener('resize', handleResize);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);

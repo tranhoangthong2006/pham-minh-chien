@@ -15,11 +15,13 @@ export default defineConfig({
   build: {
     target: 'es2020',
     cssCodeSplit: true,
-    chunkSizeWarningLimit: 600,
+    chunkSizeWarningLimit: 800,
+    reportCompressedSize: false,
     rollupOptions: {
       output: {
         manualChunks: {
           'vendor-react': ['react', 'react-dom'],
+          'vendor-three': ['three'],
           'vendor-motion': ['framer-motion'],
           'vendor-icons': ['lucide-react'],
         },

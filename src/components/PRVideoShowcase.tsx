@@ -276,18 +276,7 @@ export function PRVideoShowcase({
           {/* Lớp gradient bóng mờ */}
           <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-black/95 via-black/70 to-transparent pointer-events-none" />
 
-          {/* Nút Phóng To góc trên phải */}
-          <div className="absolute top-2.5 right-2.5 z-30">
-            <button
-              type="button"
-              onClick={openFullModal}
-              className="px-3 py-1.5 rounded-full bg-black/80 hover:bg-rose-600 border border-white/25 hover:border-rose-400 text-white text-[11px] font-mono font-bold flex items-center gap-1.5 backdrop-blur-md shadow-lg transition active:scale-95 cursor-pointer"
-              title="Phóng to xem toàn bộ video từ 00:01 đến hết"
-            >
-              <Maximize2 className="w-3.5 h-3.5 text-amber-300" />
-              <span>Phóng To</span>
-            </button>
-          </div>
+
 
           {/* Badge Trailer góc trên trái */}
           <div className="absolute top-2.5 left-2.5 z-30 pointer-events-none">
@@ -303,7 +292,7 @@ export function PRVideoShowcase({
             className="absolute bottom-2.5 inset-x-3 z-20 space-y-1.5 pointer-events-auto"
           >
             <div className="text-left">
-              <h4 className="text-xs font-bold text-white truncate">Video Portfolio — Phạm Minh Chiến</h4>
+              <h4 className="text-xs font-bold text-white truncate">Video Project — Phạm Minh Chiến</h4>
               <span className="text-[10px] font-mono text-amber-300 font-medium block">Quan Hệ Công Chúng • ĐH Gia Định</span>
             </div>
 

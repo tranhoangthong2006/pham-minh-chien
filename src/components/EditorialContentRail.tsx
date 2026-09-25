@@ -236,7 +236,7 @@ export function EditorialContentRailDirectional() {
 
         {/* 2. KHÔNG GIAN 3D CAROUSEL BẤM TRÁI / PHẢI VỚI HIỆU ỨNG PERSPECTIVE & FLOATING */}
         <div 
-          className="relative h-[430px] sm:h-[480px] flex items-center justify-center [perspective:1400px] overflow-visible"
+          className="relative h-[460px] sm:h-[510px] flex items-center justify-center [perspective:1400px] overflow-visible"
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
         >
@@ -270,7 +270,7 @@ export function EditorialContentRailDirectional() {
               return (
                 <div
                   key={card.id}
-                  className={`absolute w-[240px] sm:w-[285px] aspect-[1/1.42] rounded-3xl transition-all duration-500 ease-out flex flex-col justify-between group select-none pointer-events-auto ${
+                  className={`absolute w-[245px] sm:w-[295px] aspect-[1/1.46] rounded-3xl transition-all duration-500 ease-out flex flex-col justify-between group select-none pointer-events-auto ${
                     isCenter ? 'ring-4 ring-rose-500/25 shadow-2xl scale-[1.02]' : 'hover:scale-[1.04]'
                   }`}
                   style={{
@@ -428,6 +428,73 @@ export function EditorialContentRailDirectional() {
             <ChevronRight className="w-5 h-5" aria-hidden="true" />
           </motion.button>
         </div>
+
+        {/* 3.5 BẢNG THÔNG TIN CHI TIẾT BÀI VIẾT ĐANG CHỌN (FULL NỘI DUNG & LUẬN ĐIỂM) */}
+        {ARTICLES_DATA[activeIndex] && (
+          <motion.div 
+            key={ARTICLES_DATA[activeIndex].id}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+            className="mt-8 rounded-3xl bg-white/95 border border-stone-200/90 p-6 sm:p-8 backdrop-blur-xl shadow-xl shadow-rose-950/5 relative overflow-hidden"
+          >
+            <div className="flex flex-col lg:flex-row gap-6 items-start justify-between">
+              <div className="space-y-4 flex-1">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="px-3 py-1 rounded-full bg-rose-50 text-rose-700 border border-rose-200 font-bold text-xs font-mono">
+                    Bài viết #{ARTICLES_DATA[activeIndex].indexStr} / 05
+                  </span>
+                  <span className="px-3 py-1 rounded-full bg-amber-50 text-amber-800 border border-amber-200 font-semibold text-xs font-mono">
+                    {ARTICLES_DATA[activeIndex].category}
+                  </span>
+                  <span className="text-stone-500 font-mono text-xs">
+                    Ngày đăng: {ARTICLES_DATA[activeIndex].date} • {ARTICLES_DATA[activeIndex].brand}
+                  </span>
+                </div>
+
+                <h3 className="text-xl sm:text-2xl font-extrabold text-stone-900 font-heading">
+                  {ARTICLES_DATA[activeIndex].title}
+                </h3>
+
+                <div className="p-4 rounded-2xl bg-gradient-to-r from-rose-50/80 via-white to-amber-50/60 border border-rose-200/80 text-xs sm:text-sm text-stone-700 leading-relaxed">
+                  <span className="font-bold font-mono uppercase text-[11px] text-rose-700 block mb-1">
+                    Visual Hook & Đặt Vấn Đề:
+                  </span>
+                  <p className="italic">"{ARTICLES_DATA[activeIndex].hook}"</p>
+                </div>
+
+                <div>
+                  <span className="text-xs font-mono uppercase tracking-wider text-stone-700 font-bold block mb-2">
+                    Luận Điểm Trọng Tâm & Phân Tích Insight:
+                  </span>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                    {ARTICLES_DATA[activeIndex].contentSnippet.map((line, lIdx) => (
+                      <div key={lIdx} className="flex items-start gap-2 text-xs sm:text-sm text-stone-600 bg-stone-50 p-2.5 rounded-xl border border-stone-200/70">
+                        <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" aria-hidden="true" />
+                        <span>{line}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="pt-3 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-stone-600 border-t border-stone-100">
+                  <div>
+                    <strong className="text-rose-600">Kêu gọi hành động (CTA): </strong> 
+                    <span>{ARTICLES_DATA[activeIndex].callToAction}</span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setSelectedArticle(ARTICLES_DATA[activeIndex])}
+                    className="px-4 py-2 rounded-xl bg-gradient-to-r from-rose-600 to-amber-500 hover:from-rose-500 hover:to-amber-400 text-white font-mono font-bold text-xs shadow-md shadow-rose-500/20 flex items-center gap-1.5 transition active:scale-95 cursor-pointer shrink-0"
+                  >
+                    <BookOpen className="w-3.5 h-3.5" />
+                    <span>Mở Xem Chi Tiết Ảnh Toàn Văn</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
 
       </div>
 
