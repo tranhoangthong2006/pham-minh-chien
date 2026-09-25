@@ -204,35 +204,7 @@ export function EditorialContentRailDirectional() {
           </p>
         </motion.div>
 
-        {/* 1. THANH TABS ĐỒNG BỘ Ở PHÍA TRÊN VỚI ANIMATION HOVER & SPRING */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="flex items-center justify-center gap-1.5 sm:gap-2.5 flex-wrap mb-6 sm:mb-8"
-        >
-          {ARTICLES_DATA.map((item, idx) => {
-            const isActive = idx === activeIndex;
-            return (
-              <motion.button
-                key={item.id}
-                type="button"
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => setActiveIndex(idx)}
-                className={`px-3.5 py-1.5 rounded-full text-xs font-mono transition-all duration-300 min-h-[36px] flex items-center gap-1.5 border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 cursor-pointer ${
-                  isActive
-                    ? 'bg-gradient-to-r from-rose-600 to-amber-500 text-white font-bold border-transparent shadow-md shadow-rose-500/25 scale-105'
-                    : 'bg-white/90 hover:bg-white text-stone-600 hover:text-stone-900 border-stone-200 shadow-sm'
-                }`}
-              >
-                <span>{item.tabLabel}</span>
-                {isActive && <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />}
-              </motion.button>
-            );
-          })}
-        </motion.div>
+
 
         {/* 2. KHÔNG GIAN 3D CAROUSEL BẤM TRÁI / PHẢI VỚI HIỆU ỨNG PERSPECTIVE & FLOATING */}
         <div 
