@@ -259,32 +259,40 @@ app.post('/api/contacts/reset-samples', (req, res) => {
   }
 });
 
-// 16. Serve Frontend Static Build (Tự động phục vụ giao diện trên Render khi build)
-if (fs.existsSync(distPath)) {
-  // Caching 1 năm bất biến cho assets có hash trong tên file
-  app.use('/assets', express.static(path.join(distPath, 'assets'), {
-    maxAge: '1y',
-    immutable: true,
-  }));
+// 16. Serve Frontend Static Build (Tự động phục vụ giao diện Portfolio trên Railway / Render)
+app.use('/assets', express.static(path.join(distPath, 'assets'), {
+  maxAge: '1y',
+  immutable: true,
+}));
 
-  // Caching 30 ngày cho các file tĩnh khác, trừ index.html (luôn no-cache để cập nhật tức thì)
-  app.use(express.static(distPath, {
-    maxAge: '30d',
-    setHeaders: (res, filePath) => {
-      if (filePath.endsWith('index.html')) {
-        res.setHeader('Cache-Control', 'no-cache');
-      }
+app.use(express.static(distPath, {
+  maxAge: '30d',
+  setHeaders: (res, filePath) => {
+    if (filePath.endsWith('index.html')) {
+      res.setHeader('Cache-Control', 'no-cache');
     }
-  }));
+  }
+}));
 
-  // SPA fallback cho client-side routing (ví dụ /admin)
-  app.get('*', (req, res) => {
-    if (req.path.startsWith('/api')) {
-      return res.status(404).json({ success: false, message: 'API endpoint không tồn tại' });
+// SPA fallback cho client-side routing (ví dụ /admin hoặc trang chủ)
+app.get('*', (req, res) => {
+  if (req.path.startsWith('/api')) {
+    return res.status(404).json({ success: false, message: 'API endpoint không tồn tại' });
+  }
+  const indexPath = path.join(distPath, 'index.html');
+  if (fs.existsSync(indexPath)) {
+    return res.sendFile(indexPath);
+  }
+  res.json({
+    status: 'ok',
+    message: 'Pham Minh Chien Portfolio Backend API Server is running',
+    endpoints: {
+      health: '/api/health',
+      contacts: '/api/contacts',
+      stats: '/api/stats'
     }
-    res.sendFile(path.join(distPath, 'index.html'));
   });
-}
+});
 
 // Start Server
 app.listen(PORT, () => {
