@@ -48,72 +48,81 @@ export function LuxuryAmbientBackground() {
 
     window.addEventListener('resize', handleResize, { passive: true });
 
-    // Bảng màu các đóa hoa & cánh hoa nhung lụa cao cấp
+    // Bảng màu hoa lụa & hoa đào mùa xuân cao cấp
     const colorPalettes = [
       {
         petal1: 'rgba(244, 63, 94,',   // Rose Silk
-        petal2: 'rgba(253, 164, 175,', // Soft Blossom Pink
+        petal2: 'rgba(253, 164, 175,', // Soft Sakura Pink
         center: 'rgba(245, 158, 11,',  // Gold Pistil
-        glow: 'rgba(225, 29, 72,',
-      },
-      {
-        petal1: 'rgba(251, 113, 133,', // Coral Rose
-        petal2: 'rgba(254, 205, 211,', // Champagne Blush
-        center: 'rgba(251, 191, 36,',  // Amber Gold
         glow: 'rgba(244, 63, 94,',
       },
       {
-        petal1: 'rgba(245, 158, 11,',  // Champagne Gold
-        petal2: 'rgba(254, 243, 199,', // Ivory Pearl
-        center: 'rgba(225, 29, 72,',   // Rose Gold
-        glow: 'rgba(251, 191, 36,',
+        petal1: 'rgba(251, 113, 133,', // Coral Blush
+        petal2: 'rgba(254, 205, 211,', // Champagne Rose
+        center: 'rgba(251, 191, 36,',  // Amber Gold
+        glow: 'rgba(251, 113, 133,',
       },
       {
-        petal1: 'rgba(225, 29, 72,',   // Velvet Rose
-        petal2: 'rgba(251, 113, 133,', // Deep Silk Pink
-        center: 'rgba(245, 158, 11,',  // Warm Gold
-        glow: 'rgba(190, 18, 60,',
+        petal1: 'rgba(225, 29, 72,',   // Velvet Camellia
+        petal2: 'rgba(251, 113, 133,', // Deep Blossom
+        center: 'rgba(252, 211, 77,',  // Bright Stamen
+        glow: 'rgba(225, 29, 72,',
+      },
+      {
+        petal1: 'rgba(245, 158, 11,',  // Champagne Gold
+        petal2: 'rgba(254, 243, 199,', // Cream Petal
+        center: 'rgba(225, 29, 72,',   // Rose Center
+        glow: 'rgba(245, 158, 11,',
       },
     ];
 
-    // Số lượng hoa tối ưu: mượt mà 60 FPS cả trên điện thoại yếu và laptop
-    const ELEMENT_COUNT = Math.min(width < 768 ? 20 : 38, 45);
+    // Số lượng hoa và cánh hoa cân đối hoàn hảo
+    const ELEMENT_COUNT = Math.min(width < 768 ? 24 : 42, 48);
 
     const createFloatingElement = (initialY?: number): FloatingElement => {
       const rand = Math.random();
       let type: 'flower' | 'petal' | 'pollen';
-      if (rand < 0.28) {
-        type = 'flower'; // 28% đóa hoa nở rộ trọn vẹn
-      } else if (rand < 0.78) {
-        type = 'petal'; // 50% cánh hoa bay lượn 3D
+      if (rand < 0.40) {
+        type = 'flower'; // 40% Đóa hoa nở rộ trọn vẹn trôi bồng bềnh
+      } else if (rand < 0.88) {
+        type = 'petal'; // 48% Cánh hoa bay lượn rơi chầm chậm
       } else {
-        type = 'pollen'; // 22% phấn hoa ánh kim phát sáng
+        type = 'pollen'; // 12% Hạt phấn hoa ánh kim
       }
 
       const palette = colorPalettes[Math.floor(Math.random() * colorPalettes.length)];
-      const size = type === 'flower' 
-        ? Math.random() * 11 + 9 
-        : type === 'petal' 
-        ? Math.random() * 8 + 5 
-        : Math.random() * 2.2 + 1;
+      
+      // Kích thước chuẩn thị giác
+      let size: number;
+      if (type === 'flower') {
+        size = Math.random() * 12 + 12; // 12px - 24px (đóa hoa rõ nét)
+      } else if (type === 'petal') {
+        size = Math.random() * 8 + 8;  // 8px - 16px (cánh hoa bay)
+      } else {
+        size = Math.random() * 2 + 1.2; // 1.2px - 3.2px (hạt phấn hoa)
+      }
 
       return {
         x: Math.random() * width,
         y: initialY !== undefined ? initialY : Math.random() * height,
         size,
-        speedY: type === 'pollen' ? Math.random() * 0.35 + 0.15 : Math.random() * 0.5 + 0.25,
-        speedX: (Math.random() - 0.5) * 0.25,
-        swaySpeed: Math.random() * 0.02 + 0.008,
-        swayRange: Math.random() * 30 + 15,
+        speedY: type === 'flower' 
+          ? Math.random() * 0.35 + 0.22  // Đóa hoa rơi rất chậm, lững lờ trôi
+          : type === 'petal'
+          ? Math.random() * 0.48 + 0.28  // Cánh hoa lượn nhẹ nhàng
+          : Math.random() * 0.25 + 0.15, // Phấn hoa trôi êm
+        speedX: (Math.random() - 0.5) * 0.2,
+        swaySpeed: Math.random() * 0.015 + 0.007,
+        swayRange: Math.random() * 35 + 20,
         swayAngle: Math.random() * Math.PI * 2,
         rotation: Math.random() * Math.PI * 2,
-        rotSpeed: (Math.random() - 0.5) * 0.015,
+        rotSpeed: (Math.random() - 0.5) * 0.01,
         flipAngle: Math.random() * Math.PI * 2,
-        flipSpeed: (Math.random() * 0.025 + 0.01) * (Math.random() > 0.5 ? 1 : -1),
-        alpha: Math.random() * 0.4 + 0.35,
-        baseAlpha: Math.random() * 0.45 + 0.35,
+        flipSpeed: (Math.random() * 0.018 + 0.008) * (Math.random() > 0.5 ? 1 : -1),
+        alpha: Math.random() * 0.35 + 0.45,
+        baseAlpha: Math.random() * 0.35 + 0.45,
         type,
-        petalsCount: Math.random() > 0.4 ? 5 : 6,
+        petalsCount: Math.random() > 0.3 ? 5 : 6,
         colorScheme: palette,
       };
     };
@@ -154,106 +163,137 @@ export function LuxuryAmbientBackground() {
     };
     document.addEventListener('visibilitychange', handleVisibilityChange);
 
-    // 1. Hàm vẽ Đóa Hoa Nở Rộ 5-6 Cánh Lụa Mềm Mại
+    // 1. Hàm vẽ Đóa Hoa Nở Rộ 5-6 Cánh Mềm Mại với Chi Tiết Tự Nhiên
     const drawBloomingFlower = (el: FloatingElement) => {
       const { x, y, size, rotation, flipAngle, alpha, colorScheme, petalsCount = 5 } = el;
       ctx.save();
       ctx.translate(x, y);
       ctx.rotate(rotation);
       
-      const flipScale = Math.cos(flipAngle);
-      ctx.scale(1, Math.abs(flipScale) * 0.6 + 0.4);
+      // Độ nghiêng 3D lượn sóng nhẹ nhàng
+      const flipScaleY = Math.abs(Math.cos(flipAngle)) * 0.45 + 0.55;
+      ctx.scale(1, flipScaleY);
 
       const petalAngleStep = (Math.PI * 2) / petalsCount;
 
-      // Hào quang mềm phát sáng quanh bông hoa
-      const auraGrad = ctx.createRadialGradient(0, 0, 0, 0, 0, size * 1.6);
-      auraGrad.addColorStop(0, `${colorScheme.glow} ${alpha * 0.25})`);
+      // Hào quang dịu dàng quanh đóa hoa
+      const auraGrad = ctx.createRadialGradient(0, 0, 0, 0, 0, size * 1.5);
+      auraGrad.addColorStop(0, `${colorScheme.glow} ${alpha * 0.22})`);
       auraGrad.addColorStop(1, `${colorScheme.glow} 0)`);
       ctx.fillStyle = auraGrad;
       ctx.beginPath();
-      ctx.arc(0, 0, size * 1.6, 0, Math.PI * 2);
+      ctx.arc(0, 0, size * 1.5, 0, Math.PI * 2);
       ctx.fill();
 
-      // Vẽ từng cánh hoa xếp lớp
+      // Vẽ các cánh hoa nhiều lớp xếp tầng
       for (let i = 0; i < petalsCount; i++) {
         const angle = i * petalAngleStep;
         ctx.save();
         ctx.rotate(angle);
 
+        // Lớp gradient chuyển màu cánh hoa từ cuống ra mép
         const petalGrad = ctx.createLinearGradient(0, 0, 0, -size);
         petalGrad.addColorStop(0, `${colorScheme.petal1} ${alpha * 0.95})`);
-        petalGrad.addColorStop(0.7, `${colorScheme.petal2} ${alpha * 0.8})`);
-        petalGrad.addColorStop(1, `rgba(255, 255, 255, ${alpha * 0.6})`);
+        petalGrad.addColorStop(0.65, `${colorScheme.petal2} ${alpha * 0.85})`);
+        petalGrad.addColorStop(1, `rgba(255, 255, 255, ${alpha * 0.7})`);
 
         ctx.fillStyle = petalGrad;
         ctx.beginPath();
         ctx.moveTo(0, 0);
-        ctx.bezierCurveTo(-size * 0.55, -size * 0.35, -size * 0.45, -size * 0.9, 0, -size);
-        ctx.bezierCurveTo(size * 0.45, -size * 0.9, size * 0.55, -size * 0.35, 0, 0);
+        // Đường cong cánh hoa mềm mại
+        ctx.bezierCurveTo(-size * 0.52, -size * 0.35, -size * 0.48, -size * 0.88, 0, -size);
+        ctx.bezierCurveTo(size * 0.48, -size * 0.88, size * 0.52, -size * 0.35, 0, 0);
         ctx.closePath();
         ctx.fill();
+
+        // Gân cánh hoa mảnh nhẹ
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.quadraticCurveTo(size * 0.05, -size * 0.5, 0, -size * 0.8);
+        ctx.strokeStyle = `rgba(255, 255, 255, ${alpha * 0.35})`;
+        ctx.lineWidth = 0.6;
+        ctx.stroke();
 
         ctx.restore();
       }
 
-      // Nhụy hoa ánh vàng champagne lấp lánh ở tâm
-      const pistilGrad = ctx.createRadialGradient(0, 0, 0, 0, 0, size * 0.3);
-      pistilGrad.addColorStop(0, `rgba(255, 255, 255, ${alpha * 0.95})`);
-      pistilGrad.addColorStop(0.5, `${colorScheme.center} ${alpha * 0.9})`);
-      pistilGrad.addColorStop(1, `${colorScheme.petal1} ${alpha * 0.4})`);
+      // Tâm hoa & Nhụy vàng óng ánh (Golden Stamen & Pistil)
+      const centerGrad = ctx.createRadialGradient(0, 0, 0, 0, 0, size * 0.32);
+      centerGrad.addColorStop(0, `rgba(255, 255, 255, ${alpha * 0.98})`);
+      centerGrad.addColorStop(0.45, `${colorScheme.center} ${alpha * 0.92})`);
+      centerGrad.addColorStop(1, `${colorScheme.petal1} ${alpha * 0.4})`);
 
-      ctx.fillStyle = pistilGrad;
+      ctx.fillStyle = centerGrad;
       ctx.beginPath();
       ctx.arc(0, 0, size * 0.28, 0, Math.PI * 2);
       ctx.fill();
 
+      // Các chấm nhụy hoa nhỏ li ti xung quanh
+      for (let s = 0; s < 5; s++) {
+        const sAngle = (s * Math.PI * 2) / 5;
+        const sx = Math.cos(sAngle) * (size * 0.16);
+        const sy = Math.sin(sAngle) * (size * 0.16);
+        ctx.fillStyle = `rgba(255, 255, 255, ${alpha * 0.85})`;
+        ctx.beginPath();
+        ctx.arc(sx, sy, size * 0.04, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
       ctx.restore();
     };
 
-    // 2. Hàm vẽ Cánh Hoa Rơi Uốn Lượn 3D (Floating Petal)
+    // 2. Hàm vẽ Cánh Hoa Rơi Uốn Lượn 3D Tự Nhiên (Falling Petal)
     const drawFloatingPetal = (el: FloatingElement) => {
       const { x, y, size, rotation, flipAngle, alpha, colorScheme } = el;
       ctx.save();
       ctx.translate(x, y);
       ctx.rotate(rotation);
 
+      // Hiệu ứng lật cánh hoa 3D mềm mại
       const flipScale = Math.cos(flipAngle);
       ctx.scale(flipScale, 1);
 
       const petalGrad = ctx.createLinearGradient(-size * 0.5, -size, size * 0.5, size);
-      petalGrad.addColorStop(0, `${colorScheme.petal1} ${alpha * 0.85})`);
-      petalGrad.addColorStop(0.6, `${colorScheme.petal2} ${alpha * 0.75})`);
-      petalGrad.addColorStop(1, `rgba(255, 255, 255, ${alpha * 0.5})`);
+      petalGrad.addColorStop(0, `${colorScheme.petal1} ${alpha * 0.9})`);
+      petalGrad.addColorStop(0.6, `${colorScheme.petal2} ${alpha * 0.8})`);
+      petalGrad.addColorStop(1, `rgba(255, 255, 255, ${alpha * 0.65})`);
 
       ctx.fillStyle = petalGrad;
       ctx.beginPath();
-      ctx.moveTo(0, -size * 1.1);
-      ctx.bezierCurveTo(size * 0.7, -size * 0.6, size * 0.6, size * 0.6, 0, size);
-      ctx.bezierCurveTo(-size * 0.6, size * 0.6, -size * 0.7, -size * 0.6, 0, -size * 1.1);
+      ctx.moveTo(0, -size * 1.15);
+      ctx.bezierCurveTo(size * 0.75, -size * 0.6, size * 0.65, size * 0.7, 0, size);
+      ctx.bezierCurveTo(-size * 0.65, size * 0.7, -size * 0.75, -size * 0.6, 0, -size * 1.15);
       ctx.closePath();
       ctx.fill();
+
+      // Đường gân cánh hoa chính
+      ctx.beginPath();
+      ctx.moveTo(0, -size * 0.9);
+      ctx.quadraticCurveTo(size * 0.08, 0, 0, size * 0.7);
+      ctx.strokeStyle = `rgba(255, 255, 255, ${alpha * 0.35})`;
+      ctx.lineWidth = 0.6;
+      ctx.stroke();
 
       ctx.restore();
     };
 
-    // 3. Hàm vẽ Hạt Phấn Hoa Ánh Kim Phát Sáng (Golden Floral Pollen)
+    // 3. Hàm vẽ Hạt Phấn Hoa Ánh Kim Phát Sáng (Golden Pollen)
     const drawPollen = (el: FloatingElement) => {
       const { x, y, size, alpha, colorScheme } = el;
       ctx.save();
 
-      const glowGrad = ctx.createRadialGradient(x, y, 0, x, y, size * 2.5);
-      glowGrad.addColorStop(0, `${colorScheme.center} ${alpha * 0.9})`);
+      const glowGrad = ctx.createRadialGradient(x, y, 0, x, y, size * 2.8);
+      glowGrad.addColorStop(0, `${colorScheme.center} ${alpha * 0.95})`);
       glowGrad.addColorStop(1, `${colorScheme.glow} 0)`);
 
       ctx.fillStyle = glowGrad;
       ctx.beginPath();
-      ctx.arc(x, y, size * 2.5, 0, Math.PI * 2);
+      ctx.arc(x, y, size * 2.8, 0, Math.PI * 2);
       ctx.fill();
 
-      ctx.fillStyle = `rgba(255, 255, 255, ${alpha * 0.95})`;
+      ctx.fillStyle = `rgba(255, 255, 255, ${alpha * 0.98})`;
       ctx.beginPath();
-      ctx.arc(x, y, size * 0.7, 0, Math.PI * 2);
+      ctx.arc(x, y, size * 0.8, 0, Math.PI * 2);
       ctx.fill();
 
       ctx.restore();
@@ -286,22 +326,24 @@ export function LuxuryAmbientBackground() {
         el.rotation += el.rotSpeed;
         el.flipAngle += el.flipSpeed;
 
+        // Lực gió nhẹ từ trỏ chuột
         if (smoothMouseX > 0 && smoothMouseY > 0) {
           const dx = smoothMouseX - el.x;
           const dy = smoothMouseY - el.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 140 && dist > 0) {
-            const force = ((140 - dist) / 140) * 0.55;
+          if (dist < 150 && dist > 0) {
+            const force = ((150 - dist) / 150) * 0.55;
             el.x -= (dx / dist) * force;
             el.y -= (dy / dist) * force * 0.4;
           }
         }
 
-        if (el.y > height + 35) {
-          Object.assign(el, createFloatingElement(-35));
+        // Tái tạo lại hoa khi rơi hết màn hình
+        if (el.y > height + 40) {
+          Object.assign(el, createFloatingElement(-40));
         }
-        if (el.x < -35) el.x = width + 35;
-        if (el.x > width + 35) el.x = -35;
+        if (el.x < -40) el.x = width + 40;
+        if (el.x > width + 40) el.x = -40;
 
         if (el.type === 'flower') {
           drawBloomingFlower(el);
