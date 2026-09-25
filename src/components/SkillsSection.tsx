@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Layers, Share2, PenTool, CalendarRange, ShieldAlert, Video, Image as ImageIcon, Sparkles, Smile, Flame, Award } from 'lucide-react';
+import { Layers, Share2, PenTool, CalendarRange, ShieldAlert, Video, Image as ImageIcon, Sparkles, Smile, Flame, Award, FileSpreadsheet, ExternalLink } from 'lucide-react';
 
 export function SkillsSection() {
   const prSkills = [
@@ -23,7 +23,7 @@ export function SkillsSection() {
     },
     {
       title: "Giao tiếp & Xử lý khủng hoảng",
-      desc: "Thấu hiểu tâm lý công chúng, khéo léo trong ứng xử, giữ bình tĩnh và phản ứng linh hoạt trước tình huống bất ngờ.",
+      desc: "Thấu hiểu tâm lý công chuyện, khéo léo trong ứng xử, giữ bình tĩnh và phản ứng linh hoạt trước tình huống bất ngờ.",
       icon: ShieldAlert,
       color: "text-purple-400 bg-purple-500/10 border-purple-500/20"
     }
@@ -53,6 +53,15 @@ export function SkillsSection() {
       desc: "Thiết kế ấn phẩm truyền thông mạng xã hội, infographic, presentation và tư liệu sự kiện nhanh chóng.",
       icon: Sparkles,
       accent: "text-emerald-400"
+    },
+    {
+      name: "Microsoft Excel & Google Sheets",
+      level: "Thành thạo",
+      category: "Xử lý Dữ liệu & Báo cáo",
+      desc: "Lập kế hoạch truyền thông, theo dõi tiến độ công việc, quản lý ngân sách sự kiện và phân tích chỉ số KPI qua Google Sheets.",
+      icon: FileSpreadsheet,
+      accent: "text-emerald-400",
+      link: "https://docs.google.com/spreadsheets/d/1OuB8qJ-99R2MoXHirs0YIheKm4qHdKqL/edit?usp=sharing&ouid=102773559412377286812&rtpof=true&sd=true"
     }
   ];
 
@@ -130,29 +139,45 @@ export function SkillsSection() {
             Thao tác nhanh, linh hoạt trên các phần mềm đồ hoạ và dựng video hiện đại.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {tools.map((tool, idx) => {
               const IconComp = tool.icon;
               return (
                 <motion.div
                   key={tool.name}
-                  className="p-6 rounded-2xl bg-[#111827] border border-[#1F2937] hover:border-blue-500/40 transition-all shadow-lg shadow-black/20"
+                  className="p-6 rounded-2xl bg-[#111827] border border-[#1F2937] hover:border-blue-500/40 transition-all shadow-lg shadow-black/20 flex flex-col justify-between"
                   initial={{ opacity: 0, y: 15 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: idx * 0.1 }}
                 >
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="p-2.5 rounded-xl bg-slate-800 text-blue-400 border border-slate-700">
-                      <IconComp className="w-5 h-5" aria-hidden="true" />
+                  <div>
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="p-2.5 rounded-xl bg-slate-800 text-blue-400 border border-slate-700">
+                        <IconComp className="w-5 h-5" aria-hidden="true" />
+                      </div>
+                      <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-blue-500/10 text-blue-300 border border-blue-500/20">
+                        {tool.level}
+                      </span>
                     </div>
-                    <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-blue-500/10 text-blue-300 border border-blue-500/20">
-                      {tool.level}
-                    </span>
+                    <span className="text-[11px] font-mono text-slate-400 block">{tool.category}</span>
+                    <h4 className="text-lg font-bold text-white font-heading mt-0.5">{tool.name}</h4>
+                    <p className="text-xs sm:text-sm text-slate-400 mt-2 leading-relaxed">{tool.desc}</p>
                   </div>
-                  <span className="text-[11px] font-mono text-slate-400 block">{tool.category}</span>
-                  <h4 className="text-lg font-bold text-white font-heading mt-0.5">{tool.name}</h4>
-                  <p className="text-xs sm:text-sm text-slate-400 mt-2 leading-relaxed">{tool.desc}</p>
+
+                  {'link' in tool && tool.link && (
+                    <div className="mt-4 pt-3 border-t border-slate-800">
+                      <a
+                        href={tool.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-emerald-400 hover:text-emerald-300 transition-colors"
+                      >
+                        <span>Mở file trực tuyến</span>
+                        <ExternalLink className="w-3 h-3" />
+                      </a>
+                    </div>
+                  )}
                 </motion.div>
               );
             })}

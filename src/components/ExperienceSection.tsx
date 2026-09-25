@@ -9,7 +9,9 @@ import {
   Layers,
   Share2,
   Award,
-  CheckCircle2
+  CheckCircle2,
+  FileSpreadsheet,
+  ExternalLink
 } from 'lucide-react';
 
 export function ExperienceSection() {
@@ -56,7 +58,7 @@ export function ExperienceSection() {
     {
       category: "Công Cụ & Kỹ Thuật",
       badge: "Production Suite",
-      count: "4 Nền Tảng Thành Thạo",
+      count: "5 Nền Tảng Thành Thạo",
       icon: Layers,
       border: "border-amber-200/90 hover:border-amber-400",
       accent: "from-amber-50/90 via-white to-rose-50/30",
@@ -84,6 +86,13 @@ export function ExperienceSection() {
           title: "TikTok Creator Tools",
           desc: "Nghiên cứu xu hướng, phân tích số liệu & SEO",
           tag: "Analytics"
+        },
+        {
+          title: "Microsoft Excel & Google Sheets",
+          desc: "Lập kế hoạch, quản trị ngân sách, timeline & phân tích KPI",
+          tag: "Data & Sheets",
+          link: "https://docs.google.com/spreadsheets/d/1OuB8qJ-99R2MoXHirs0YIheKm4qHdKqL/edit?usp=sharing&ouid=102773559412377286812&rtpof=true&sd=true",
+          linkText: "Mở Xem Sheet"
         }
       ]
     },
@@ -466,27 +475,64 @@ export function ExperienceSection() {
 
                     {/* Danh sách thẻ năng lực chi tiết */}
                     <div className="space-y-2.5">
-                      {group.items.map((item, sIdx) => (
-                        <div 
-                          key={sIdx}
-                          className="p-3 rounded-2xl bg-white/90 border border-stone-200/80 hover:border-rose-300 hover:bg-white hover:shadow-sm transition-all duration-200 group/item flex items-start justify-between gap-3"
-                        >
-                          <div className="flex items-start gap-2.5 min-w-0">
-                            <span className={`w-2 h-2 rounded-full ${group.dotColor} shrink-0 mt-1.5 group-hover/item:scale-125 transition-transform`} />
-                            <div className="min-w-0">
-                              <span className="text-xs sm:text-[13px] font-bold text-stone-900 block leading-snug tracking-tight">
-                                {item.title}
-                              </span>
-                              <span className="text-[11px] text-stone-500 block leading-tight mt-0.5 font-light">
-                                {item.desc}
+                      {group.items.map((item, sIdx) => {
+                        const hasLink = 'link' in item && Boolean((item as any).link);
+                        const linkUrl = hasLink ? (item as any).link : undefined;
+                        const linkText = hasLink ? (item as any).linkText || "Mở File" : undefined;
+
+                        return (
+                          <div 
+                            key={sIdx}
+                            className={`p-3 rounded-2xl bg-white/90 border transition-all duration-200 group/item flex flex-col gap-2 ${
+                              hasLink 
+                                ? 'border-emerald-300/80 bg-emerald-50/30 hover:border-emerald-500 hover:bg-emerald-50/60 shadow-sm' 
+                                : 'border-stone-200/80 hover:border-rose-300 hover:bg-white hover:shadow-sm'
+                            }`}
+                          >
+                            <div className="flex items-start justify-between gap-3">
+                              <div className="flex items-start gap-2.5 min-w-0">
+                                <span className={`w-2 h-2 rounded-full ${hasLink ? 'bg-emerald-500' : group.dotColor} shrink-0 mt-1.5 group-hover/item:scale-125 transition-transform`} />
+                                <div className="min-w-0">
+                                  <div className="flex items-center gap-1.5 flex-wrap">
+                                    <span className="text-xs sm:text-[13px] font-bold text-stone-900 leading-snug tracking-tight">
+                                      {item.title}
+                                    </span>
+                                    {hasLink && (
+                                      <span className="text-[9px] font-mono font-bold px-1.5 py-0.2 rounded bg-emerald-100 text-emerald-800 border border-emerald-300 uppercase">
+                                        Demo Trực Tuyến
+                                      </span>
+                                    )}
+                                  </div>
+                                  <span className="text-[11px] text-stone-500 block leading-tight mt-0.5 font-light">
+                                    {item.desc}
+                                  </span>
+                                </div>
+                              </div>
+                              <span className={`text-[10px] font-mono font-semibold px-2 py-0.5 rounded-md shrink-0 self-start border ${hasLink ? 'bg-emerald-100/90 text-emerald-800 border-emerald-300' : group.tagColor}`}>
+                                {item.tag}
                               </span>
                             </div>
+
+                            {hasLink && linkUrl && (
+                              <div className="pt-1 mt-1 border-t border-emerald-200/60 flex items-center justify-between">
+                                <span className="text-[11px] text-emerald-700 font-mono font-medium flex items-center gap-1">
+                                  <FileSpreadsheet className="w-3.5 h-3.5 text-emerald-600" />
+                                  Google Sheet Báo Cáo
+                                </span>
+                                <a
+                                  href={linkUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="inline-flex items-center gap-1 text-[11px] font-mono font-bold text-emerald-700 hover:text-emerald-900 bg-white hover:bg-emerald-100 px-2.5 py-1 rounded-lg border border-emerald-300 shadow-xs transition-colors"
+                                >
+                                  <span>{linkText}</span>
+                                  <ExternalLink className="w-3 h-3" />
+                                </a>
+                              </div>
+                            )}
                           </div>
-                          <span className={`text-[10px] font-mono font-semibold px-2 py-0.5 rounded-md shrink-0 self-start border ${group.tagColor}`}>
-                            {item.tag}
-                          </span>
-                        </div>
-                      ))}
+                        );
+                      })}
                     </div>
                   </div>
                 </motion.div>

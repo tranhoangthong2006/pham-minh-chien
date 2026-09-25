@@ -21,7 +21,8 @@ import {
   Target,
   Compass,
   Heart,
-  FolderOpen
+  FolderOpen,
+  FileSpreadsheet
 } from 'lucide-react';
 import { PRVideoShowcase } from './components/PRVideoShowcase';
 import { ContentCharacterCarousel } from './components/ContentCharacterCarousel';
@@ -45,6 +46,7 @@ const CANDIDATE_DATA = {
   cvDriveUrl: "/CV PHẠM MINH CHIẾN (6) (1).pdf",
   cvFileUrl: "/CV PHẠM MINH CHIẾN (6) (1).pdf",
   folderUrl: "https://drive.google.com/drive/folders/14ppSNrF8my818RuUUeWbNeF5OS19b4F9",
+  sheetUrl: "https://docs.google.com/spreadsheets/d/1OuB8qJ-99R2MoXHirs0YIheKm4qHdKqL/edit?usp=sharing&ouid=102773559412377286812&rtpof=true&sd=true",
   tiktokUrl: "https://www.tiktok.com/@trendytee62/video/7560685079442377998?_r=1&_t=ZS-99zbpOvv3Wq",
   bio: "Tốt nghiệp chuyên ngành Quan hệ công chúng tại Trường Đại học Gia Định. Chủ động học hỏi, tư duy nhạy bén với xu hướng truyền thông mạng xã hội, làm chủ kỹ năng quay dựng video ngắn giữ chân người xem và luôn kiên trì theo đuổi chỉ số KPI thực tế.",
   objectives: {
@@ -138,6 +140,7 @@ const CANDIDATE_DATA = {
         "CapCut Pro (Quay dựng & Dựng nhịp)",
         "Adobe Photoshop (Poster & Đồ họa)",
         "Canva Pro (Ấn phẩm truyền thông)",
+        "Microsoft Excel & Google Sheets (Quản trị kế hoạch & KPI)",
         "TikTok Creator Tools & SEO"
       ]
     },
@@ -661,6 +664,92 @@ export default function PortfolioPhamMinhChien() {
                     <span className="flex items-center gap-1.5">
                       <CheckCircle2 className="w-4 h-4 text-emerald-600 animate-pulse" />
                       Liên kết Google Drive công khai, truy cập trực tiếp
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* THẺ 3: KỸ NĂNG XỬ LÝ DỮ LIỆU & BÁO CÁO EXCEL / GOOGLE SHEETS */}
+            <motion.div 
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ y: -4 }}
+              className="rounded-3xl bg-white/95 border border-emerald-200/90 p-6 sm:p-8 backdrop-blur-xl shadow-xl shadow-emerald-950/5 hover:shadow-emerald-950/10 hover:border-emerald-400 transition-all duration-300"
+            >
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div className="lg:col-span-7 space-y-4">
+                  <div className="flex flex-wrap items-center gap-2 text-xs font-mono">
+                    <span className="px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 font-bold flex items-center gap-1.5">
+                      <FileSpreadsheet className="w-3.5 h-3.5 text-emerald-600" />
+                      Kỹ Năng Xử Lý Dữ Liệu & Báo Cáo
+                    </span>
+                    <span className="text-emerald-700 bg-emerald-100/70 px-2 py-0.5 rounded-md font-semibold uppercase text-[10px]">
+                      EXCEL & GOOGLE SHEETS
+                    </span>
+                  </div>
+
+                  <h3 className="text-xl sm:text-2xl font-bold text-stone-900 font-heading">
+                    Quản Trị Số Liệu, Kế Hoạch Chiến Dịch & Phân Tích KPI
+                  </h3>
+
+                  <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
+                    Ứng dụng thành thạo Microsoft Excel và Google Sheets để xây dựng kế hoạch truyền thông, phân bổ và kiểm soát ngân sách sự kiện, thiết lập timeline tiến độ công việc, quản lý danh sách khách mời và phân tích chi tiết các chỉ số tương tác, chuyển đổi thực tế.
+                  </p>
+
+                  <div className="flex flex-wrap gap-1.5 pt-2">
+                    {["Hàm Tính & Thống Kê", "Timeline Kế Hoạch", "Quản Trị Ngân Sách PR", "Phân Tích KPI Chuyển Đổi", "Báo Cáo Tiến Độ", "Google Sheets Live"].map((t, i) => (
+                      <motion.span 
+                        key={i} 
+                        whileHover={{ scale: 1.08, y: -2 }}
+                        className="text-[10px] font-mono px-2.5 py-1 rounded-lg bg-stone-100 text-stone-600 border border-stone-200 hover:border-emerald-300 hover:bg-emerald-50 hover:text-emerald-800 transition-colors cursor-default"
+                      >
+                        {t}
+                      </motion.span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="lg:col-span-5 space-y-4">
+                  <motion.div 
+                    whileHover={{ scale: 1.02 }}
+                    className="p-5 sm:p-6 rounded-2xl bg-gradient-to-br from-emerald-50/90 via-white to-teal-50/60 border border-emerald-200/90 space-y-4 shadow-sm hover:border-emerald-300 transition-all text-left"
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-mono text-emerald-800 font-bold uppercase flex items-center gap-1.5">
+                        <Sparkles className="w-3.5 h-3.5 text-emerald-600 animate-pulse" />
+                        Bảng Tính Thực Tế
+                      </span>
+                      <span className="text-[10px] px-2.5 py-0.5 rounded-md bg-emerald-600 text-white font-mono font-bold">LIVE SHEET</span>
+                    </div>
+
+                    <div>
+                      <div className="text-2xl sm:text-3xl font-extrabold font-mono text-stone-900 tracking-tight">
+                        100% Số Liệu Trực Quan
+                      </div>
+                      <p className="text-xs text-stone-600 mt-1 leading-relaxed">
+                        Bảng tính mẫu gồm công thức tính toán tự động, danh mục theo dõi và timeline thực thi.
+                      </p>
+                    </div>
+
+                    <a
+                      href={CANDIDATE_DATA.sheetUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-xs font-mono flex items-center justify-center gap-2 shadow-md shadow-emerald-600/20 active:scale-95 transition-all cursor-pointer"
+                    >
+                      <FileSpreadsheet className="w-4 h-4" />
+                      <span>Mở Xem Trực Tiếp File Excel / Google Sheet</span>
+                      <ExternalLink className="w-3.5 h-3.5 ml-0.5 opacity-80" />
+                    </a>
+                  </motion.div>
+
+                  <div className="flex items-center justify-between text-xs font-medium text-emerald-700 px-2">
+                    <span className="flex items-center gap-1.5">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-600 animate-pulse" />
+                      Liên kết Google Sheets công khai, xem và đối soát trực tiếp
                     </span>
                   </div>
                 </div>
