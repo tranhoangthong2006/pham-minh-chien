@@ -152,17 +152,29 @@ export function EditorialPressContact({
 
         </div>
 
-        {/* 3. CHÂN TRANG ĐỒNG BỘ TINH TẾ */}
-        <div className="pt-6 border-t border-stone-200/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-stone-500">
-          <p>© 2026 Hiếu Đỗ Và JAThong. Thiết kế và xây dựng portfolio.</p>
-          <button
-            type="button"
-            onClick={scrollToTop}
-            className="inline-flex items-center gap-2 text-stone-600 hover:text-rose-600 transition-colors p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 rounded-xl min-h-[44px] cursor-pointer font-medium"
-          >
-            <span>Về Đầu Trang</span>
-            <ArrowUp className="w-4 h-4" aria-hidden="true" />
-          </button>
+        {/* 3. CHÂN TRANG NỔI BẬT & SANG TRỌNG */}
+        <div className="pt-6 border-t border-rose-200/60">
+          <div className="rounded-2xl bg-white/95 border border-stone-200/90 hover:border-rose-300 p-4 sm:px-6 sm:py-3.5 backdrop-blur-xl shadow-lg shadow-rose-950/5 flex flex-col sm:flex-row items-center justify-between gap-4 transition-all">
+            <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 text-xs font-mono text-stone-600">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span>© 2026</span>
+              <span className="font-extrabold text-stone-900 bg-gradient-to-r from-rose-600 via-rose-500 to-amber-600 bg-clip-text text-transparent text-sm">
+                Hiếu Đỗ & JAThong
+              </span>
+              <span className="text-stone-400">•</span>
+              <span className="text-stone-700 font-medium">Thiết kế & Xây dựng Portfolio</span>
+            </div>
+
+            <button
+              type="button"
+              onClick={scrollToTop}
+              className="px-4 py-2 rounded-xl bg-stone-900 hover:bg-gradient-to-r hover:from-rose-600 hover:to-amber-500 text-white text-xs font-mono font-bold flex items-center gap-2 shadow-md shadow-stone-900/10 hover:shadow-rose-500/20 active:scale-95 transition-all duration-300 cursor-pointer group"
+              aria-label="Cuộn về đầu trang"
+            >
+              <span>Về Đầu Trang</span>
+              <ArrowUp className="w-3.5 h-3.5 text-amber-400 group-hover:-translate-y-0.5 transition-transform" aria-hidden="true" />
+            </button>
+          </div>
         </div>
 
       </div>
