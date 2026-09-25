@@ -20,7 +20,8 @@ import {
   Star,
   Target,
   Compass,
-  Heart
+  Heart,
+  FolderOpen
 } from 'lucide-react';
 import { PRVideoShowcase } from './components/PRVideoShowcase';
 import { ContentCharacterCarousel } from './components/ContentCharacterCarousel';
@@ -583,38 +584,39 @@ export default function PortfolioPhamMinhChien() {
               </div>
             </motion.div>
 
-            {/* THẺ 2: COMMERCIAL SALES CONVERSION & SOCIAL COMMERCE */}
+            {/* THẺ 2: KHO TƯ LIỆU DỰ ÁN NỔI BẬT & GOOGLE DRIVE VAULT */}
             <motion.div 
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
               whileHover={{ y: -4 }}
-              className="rounded-3xl bg-white/95 border border-stone-200/90 p-6 sm:p-8 backdrop-blur-xl shadow-xl shadow-rose-950/5 hover:shadow-rose-950/10 hover:border-emerald-300 transition-all duration-300"
+              className="rounded-3xl bg-white/95 border border-stone-200/90 p-6 sm:p-8 backdrop-blur-xl shadow-xl shadow-rose-950/5 hover:shadow-rose-950/10 hover:border-amber-300 transition-all duration-300"
             >
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                 <div className="lg:col-span-7 space-y-4">
-                  <div className="flex items-center gap-2 text-xs font-mono">
-                    <span className="px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 font-medium">
-                      Social Commerce & Sales Conversion
+                  <div className="flex flex-wrap items-center gap-2 text-xs font-mono">
+                    <span className="px-3 py-1 rounded-full bg-amber-50 text-amber-800 border border-amber-200 font-bold flex items-center gap-1.5">
+                      <FolderOpen className="w-3.5 h-3.5 text-amber-600" />
+                      Kho Dự Án & Tư Liệu Thực Chiến
                     </span>
-                    <span className="text-stone-400 font-semibold">HAPI ECOMMERCE</span>
+                    <span className="text-stone-400 font-semibold uppercase">GOOGLE DRIVE CLOUD</span>
                   </div>
 
                   <h3 className="text-xl sm:text-2xl font-bold text-stone-900 font-heading">
-                    Chuyển Đổi Thương Mại & Chốt Đơn Thực Tế
+                    Tuyển Tập Dự Án Nổi Bật & Hồ Sơ Tư Liệu
                   </h3>
 
                   <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
-                    Thực hiện quay chụp các bộ sưu tập thời trang (áo thun, áo khoác), mỹ phẩm và quà tặng; kết hợp viết content quảng bá đánh trúng tâm lý khách hàng để trực tiếp chốt đơn hàng và hoàn thành vượt mức KPI đề ra.
+                    Lưu trữ và tổng hợp toàn bộ các sản phẩm truyền thông: Kịch bản video ngắn TikTok, bộ ảnh sản phẩm thời trang & mỹ phẩm, kế hoạch chiến dịch PR, ấn phẩm đồ họa cùng tư liệu nghiệm thu kết quả thực tế.
                   </p>
 
                   <div className="flex flex-wrap gap-1.5 pt-2">
-                    {["Quay Chụp Sản Phẩm", "Content Bán Hàng", "Nghiên Cứu Insight", "TikTok Shop", "Tư Vấn Khách Hàng"].map((t, i) => (
+                    {["Kịch Bản Video Viral", "Bộ Ảnh Sản Phẩm", "Kế Hoạch Content PR", "Thiết Kế Ấn Phẩm", "Tư Liệu Google Drive"].map((t, i) => (
                       <motion.span 
                         key={i} 
                         whileHover={{ scale: 1.08, y: -2 }}
-                        className="text-[10px] font-mono px-2.5 py-1 rounded-lg bg-stone-100 text-stone-600 border border-stone-200 hover:border-emerald-300 hover:bg-emerald-50 hover:text-emerald-700 transition-colors cursor-default"
+                        className="text-[10px] font-mono px-2.5 py-1 rounded-lg bg-stone-100 text-stone-600 border border-stone-200 hover:border-amber-300 hover:bg-amber-50 hover:text-amber-800 transition-colors cursor-default"
                       >
                         {t}
                       </motion.span>
@@ -625,24 +627,41 @@ export default function PortfolioPhamMinhChien() {
                 <div className="lg:col-span-5 space-y-4">
                   <motion.div 
                     whileHover={{ scale: 1.02 }}
-                    className="p-5 rounded-2xl bg-emerald-50/70 border border-emerald-200/80 space-y-3 shadow-xs hover:border-emerald-300 transition-all"
+                    className="p-5 sm:p-6 rounded-2xl bg-gradient-to-br from-amber-50/90 via-white to-rose-50/60 border border-amber-200/90 space-y-4 shadow-sm hover:border-amber-300 transition-all text-left"
                   >
                     <div className="flex items-center justify-between">
-                      <span className="text-xs font-mono text-emerald-800 font-bold uppercase">KPI Chốt đơn tháng</span>
-                      <span className="text-xs px-2.5 py-0.5 rounded-md bg-emerald-600 text-white font-mono font-bold">VƯỢT CHỈ TIÊU</span>
+                      <span className="text-xs font-mono text-amber-800 font-bold uppercase flex items-center gap-1.5">
+                        <Sparkles className="w-3.5 h-3.5 text-amber-600 animate-pulse" />
+                        Kho Lưu Trữ Trực Tuyến
+                      </span>
+                      <span className="text-[10px] px-2.5 py-0.5 rounded-md bg-amber-500 text-white font-mono font-bold">DRIVE VAULT</span>
                     </div>
-                    <div className="text-3xl font-extrabold font-mono text-emerald-700">
-                      60+ Sản Phẩm / Tháng
+
+                    <div>
+                      <div className="text-2xl sm:text-3xl font-extrabold font-mono text-stone-900 tracking-tight">
+                        100% Tư Liệu Gốc
+                      </div>
+                      <p className="text-xs text-stone-600 mt-1 leading-relaxed">
+                        Toàn bộ hình ảnh gốc, video chất lượng cao và tài liệu kịch bản được lưu trữ đồng bộ.
+                      </p>
                     </div>
-                    <p className="text-xs text-emerald-800 leading-relaxed">
-                      Sản phẩm trọng tâm: Áo thun, mỹ phẩm, set quà tặng triển khai đồng bộ trên TikTok Shop và Fanpage.
-                    </p>
+
+                    <a
+                      href={CANDIDATE_DATA.folderUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-amber-500 via-rose-500 to-amber-600 hover:from-amber-400 hover:to-rose-400 text-white font-bold text-xs font-mono flex items-center justify-center gap-2 shadow-md shadow-amber-500/20 active:scale-95 transition-all cursor-pointer"
+                    >
+                      <FolderOpen className="w-4 h-4" />
+                      <span>Xem Toàn Bộ Dự Án Trên Google Drive</span>
+                      <ExternalLink className="w-3.5 h-3.5 ml-0.5 opacity-80" />
+                    </a>
                   </motion.div>
 
                   <div className="flex items-center justify-between text-xs font-medium text-emerald-700 px-2">
                     <span className="flex items-center gap-1.5">
                       <CheckCircle2 className="w-4 h-4 text-emerald-600 animate-pulse" />
-                      Số liệu nội bộ đã nghiệm thu & xác nhận
+                      Liên kết Google Drive công khai, truy cập trực tiếp
                     </span>
                   </div>
                 </div>
